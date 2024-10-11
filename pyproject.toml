@@ -61,8 +61,6 @@ dev-dependencies = [
 ]
 [tool.hatch.build.targets.sdist]
 exclude = [
-    ".dockerignore",
-    "Dockerfile",
     "Makefile",
     "uv.lock",
 ]
@@ -75,6 +73,9 @@ tag_format = "v$version"
 version_files = [
     "pyproject.toml:version",
     "src/illallangi/http/__version__.py:__version__",
+]
+pre_bump_hooks = [
+  "uv sync"
 ]
 update_changelog_on_bump = true
 major_version_zero = true
