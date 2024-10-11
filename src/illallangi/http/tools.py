@@ -1,28 +1,3 @@
-"""
-This script checks the status of URLs and their links recursively, starting from a given URL.
-
-It uses the `click` library for command-line interface, `requests` for HTTP requests,
-`BeautifulSoup` for parsing HTML content, and `alive_progress` for displaying a progress bar.
-
-Functions:
-    cli(url: str, print_all: bool = False):
-        Command-line interface function that takes a URL and an optional flag to print all results.
-        It checks the status of the given URL and its links recursively, printing the results in a table format.
-
-Parameters:
-    url (str): The starting URL to check.
-    print_all (bool, optional): Flag to print all results, including expected status codes. Defaults to False.
-
-Raises:
-    ValueError: If the provided URL is not absolute.
-
-Usage:
-    python tools.py <url> [--print-all]
-
-Example:
-    python tools.py https://example.com --print-all
-"""
-
 from collections import Counter
 from queue import Queue
 from time import sleep
@@ -51,17 +26,6 @@ def cli(  # noqa: C901 PLR0915
     url: str | URL,
     print_all: bool = False,  # noqa: FBT001 FBT002
 ) -> None:
-    """
-    Command-line interface function to check the status and content of a given URL.
-
-    Args:
-        url (str | URL): The URL to check. It must be an absolute URL.
-        print_all (bool, optional): If True, print all results. If False, only print errors. Defaults to False.
-    Raises:
-        ValueError: If the provided URL is not absolute.
-    Returns:
-        None
-    """
     print_errors = not print_all
     if not isinstance(url, URL):
         url = URL(url)
