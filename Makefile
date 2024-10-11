@@ -15,8 +15,9 @@ usage:
 .PHONY: clean
 clean:
 	@git clean -Xdf
+	@mkdir -p .git/hooks
 	@rm -f .git/hooks/*.sample
-	@chmod +x .git/hooks/*
+	@find .git/hooks/ -type f  | while read i; do chmod +x $$i; done
 
 .PHONY: lint
 lint:
@@ -31,7 +32,6 @@ commit: lint
 .PHONY: build
 build: lint
 	@uv build
-
 
 .PHONY: help
 help: lint
